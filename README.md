@@ -1,5 +1,5 @@
-# state_city_scraper
-This will be a python script that will scrape wikipedia to get a list of cities for each state to be used for whatever you want to use it for.
+# State City Wikipedia Scraper
+This will be a python script that will scrape wikipedia to get a list of cities for each state to be used for whatever you want to use it for. I was looking around online to see if there were any lists like this that existed and it didn't seem that was the case (unless I missed it lol). Most that existed were just state list OR city list, no combinations of states paired with their respective cities. For the software I'm currently writing, I wanted users to be able to pick very specifically so I figured scraping the data from the list of cities / towns / municipalities provided by Wikipedia would do the trick.
 
 I don't think you'll actually have to do anything unless the script needs to be updated but the output should be somewhere for your use.
 
