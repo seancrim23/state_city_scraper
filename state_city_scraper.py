@@ -25,27 +25,37 @@ alphabet_data = json.load(f2)
 #starting with Alabama
 #find other states that follow the same setup?
 #california - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_California
-print("---ALABAMA---")
-r = requests.get("https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Alabama")
-soup = BeautifulSoup(r.content, 'html.parser')
-cities_table_rows = soup.find("section", class_="mf-section-1").find("table").find("tbody").find_all("tr")
-for row in cities_table_rows:
-    city_name = row.find("th").find("a")
-    if city_name is not None:
-        print(city_name.text)
-print("------")
+state_link_arr = [
+    ["AL", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Alabama"],
+    ["CA", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_California"]
+]
+for state_link in state_link_arr:
+    print(state_link[0])
+    r = requests.get(state_link[1])
+    soup = BeautifulSoup(r.content, 'html.parser')
+    cities_table_rows = soup.find("section", class_="mf-section-1").find("table").find("tbody").find_all("tr")
+    for row in cities_table_rows:
+        city_name = row.find("th").find("a")
+        if city_name is not None:
+            print(city_name.text)
+    print("------")
 
 #doing this for Iowa bc formatted differently
-#Colorado - 
-print("---IOWA---")
-r2 = requests.get("https://en.m.wikipedia.org/wiki/List_of_cities_in_Iowa")
-soup2 = BeautifulSoup(r2.content, 'html.parser')
-cities_table_rows_2 = soup2.find("section", class_="mf-section-2").find_all("table")[1].find("tbody").find_all("tr")
-for row in cities_table_rows_2:
-    city_name = row.find("th").find("a")
-    if city_name is not None:
-        print(city_name.text)
-print("------")
+#Colorado - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Colorado
+state_link_arr_2 = [
+    ["CO", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Colorado"],
+    ["IA", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Iowa"]
+]
+for state_link in state_link_arr_2:
+    print(state_link[0])
+    r2 = requests.get(state_link[1])
+    soup2 = BeautifulSoup(r2.content, 'html.parser')
+    cities_table_rows_2 = soup2.find("section", class_="mf-section-2").find_all("table")[1].find("tbody").find_all("tr")
+    for row in cities_table_rows_2:
+        city_name = row.find("th").find("a")
+        if city_name is not None:
+            print(city_name.text)
+    print("------")
 
 #doing this for Maine bc formatted differently
 print("---MAINE---")
@@ -65,38 +75,69 @@ for row in cities_table_rows_3:
 print("------")
 
 #doing this for Nebraska bc formatted differently
-#alaska
+#alaska - https://en.m.wikipedia.org/wiki/List_of_cities_in_Alaska
 #hawaii - https://en.m.wikipedia.org/wiki/List_of_places_in_Hawaii
-print("---NEBRASKA---")
-r4 = requests.get("https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Nebraska")
-soup4 = BeautifulSoup(r4.content, 'html.parser')
-cities_table_rows_4 = soup4.find("section", class_="mf-section-1").find("table").find("tbody").find_all("tr")
-for row in cities_table_rows_4:
-    table_data = row.find_all("td")
-    #another situation where i should just skip over the first row...
-    if not table_data:
-        print("empty")
-    else:
-        city_name = table_data[1].find("a")
-        if city_name is not None:
-            print(city_name.text)
-print("------")
+#minnesota - https://en.m.wikipedia.org/wiki/List_of_cities_in_Minnesota
+#missouri - https://en.m.wikipedia.org/wiki/List_of_cities_in_Missouri
+#north dakota - https://en.m.wikipedia.org/wiki/List_of_cities_in_North_Dakota
+#oklahoma - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Oklahoma
+#pennsylvnia - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Pennsylvania (figure out how to fix the names...)
+#south dakota - https://en.m.wikipedia.org/wiki/List_of_cities_in_South_Dakota
+#texas - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Texas
+#wyoming - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Wyoming
+state_link_arr_4 = [
+    ["NE", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Nebraska"],
+    ["AK", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Alaska"],
+    ["HI", "https://en.m.wikipedia.org/wiki/List_of_places_in_Hawaii"],
+    ["MN", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Minnesota"],
+    ["MO", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Missouri"],
+    ["ND", "https://en.m.wikipedia.org/wiki/List_of_cities_in_North_Dakota"],
+    ["OK", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Oklahoma"],
+    ["PA", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Pennsylvania"],
+    ["SD", "https://en.m.wikipedia.org/wiki/List_of_cities_in_South_Dakota"],
+    ["TX", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Texas"],
+    ["WY", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Wyoming"],
+]
+for state_link in state_link_arr_4:
+    print(state_link[0])
+    r4 = requests.get(state_link[1])
+    soup4 = BeautifulSoup(r4.content, 'html.parser')
+    cities_table_rows_4 = soup4.find("section", class_="mf-section-1").find("table").find("tbody").find_all("tr")
+    for row in cities_table_rows_4:
+        table_data = row.find_all("td")
+        #another situation where i should just skip over the first row...
+        if not table_data:
+            print("empty")
+        else:
+            city_name = table_data[1].find("a")
+            if city_name is not None:
+                print(city_name.text)
+    print("------")
 
 #indiana - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Indiana
-print("---ARIZONA---")
-r5 = requests.get("https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Arizona")
-soup5 = BeautifulSoup(r5.content, 'html.parser')
-cities_table_rows_5 = soup5.find("section", class_="mf-section-2").find("table").find("tbody").find_all("tr")
-for row in cities_table_rows_5:
-    table_data = row.find_all("td")
-    #another situation where i should just skip over the first row...
-    if not table_data:
-        print("empty")
-    else:
-        city_name = table_data[0].find("a")
-        if city_name is not None:
-            print(city_name.text)
-print("------")
+#ohio - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Ohio
+#tennessee - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Tennessee
+state_link_arr_5 = [
+    ["IN", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Indiana"],
+    ["OH", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Ohio"],
+    ["TN", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Tennessee"],
+    ["AZ", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Arizona"],
+]
+for state_link in state_link_arr_5:
+    print(state_link[0])
+    r5 = requests.get(state_link[1])
+    soup5 = BeautifulSoup(r5.content, 'html.parser')
+    cities_table_rows_5 = soup5.find("section", class_="mf-section-2").find("table").find("tbody").find_all("tr")
+    for row in cities_table_rows_5:
+        table_data = row.find_all("td")
+        #another situation where i should just skip over the first row...
+        if not table_data:
+            print("empty")
+        else:
+            city_name = table_data[0].find("a")
+            if city_name is not None:
+                print(city_name.text)
+    print("------")
 
 #kentucky - https://en.m.wikipedia.org/wiki/List_of_cities_in_Kentucky
 print("---ARKANSAS---")
@@ -118,6 +159,18 @@ print("------")
 #georgia - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Georgia_(U.S._state)
 #louisiana - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Louisiana
 #maryland - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Maryland
+#michigan - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Michigan
+#mississippi - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Mississippi
+#montana - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Montana
+#nevada - https://en.m.wikipedia.org/wiki/List_of_cities_in_Nevada
+#new jersey - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_New_Jersey
+#new mexico - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_New_Mexico
+#north carolina - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_North_Carolina
+#rhode island - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Rhode_Island
+#south carolina - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_South_Carolina
+#utah - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Utah
+#washington - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Washington
+#wisconsin - https://en.m.wikipedia.org/wiki/List_of_cities_in_Wisconsin
 print("---CONNECTICUT---")
 r7 = requests.get("https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Connecticut")
 soup7 = BeautifulSoup(r7.content, 'html.parser')
@@ -166,6 +219,7 @@ for row in cities_table_rows_9:
             print(city_name.text)
 print("------")
 
+#west virginia - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_West_Virginia
 print("---KANSAS---")
 r10 = requests.get("https://en.m.wikipedia.org/wiki/List_of_cities_in_Kansas")
 soup10 = BeautifulSoup(r10.content, 'html.parser')
@@ -179,6 +233,83 @@ for row in cities_table_rows_10:
         city_name = table_data[1].find("a")
         if city_name is not None:
             print(city_name.text)
+print("------")
+
+print("---MASSACHUSETTS---")
+r11 = requests.get("https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Massachusetts")
+soup11 = BeautifulSoup(r11.content, 'html.parser')
+cities_table_rows_11 = soup11.find("section", class_="mf-section-2").find("table").find("tbody").find_all("tr")
+for row in cities_table_rows_11:
+    table_data = row.find_all("td")
+    if not table_data:
+        print("empty")
+    else:
+        city_name_td = table_data[0]
+        #some of these data points are a link inside of a bold tag and vice versa
+        bold_tag = city_name_td.find("b")
+        #does it have a link inside? if no, print normal if yes, print link value
+        city_link_tag = bold_tag.find("a")
+        if city_link_tag is None:
+            print(bold_tag.text)
+        else:
+            print(city_link_tag.text)
+print("------")
+
+#vermont - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Vermont
+print("---NEW HAMPSHIRE---")
+r12 = requests.get("https://en.m.wikipedia.org/wiki/List_of_municipalities_in_New_Hampshire")
+soup12 = BeautifulSoup(r12.content, 'html.parser')
+cities_table_rows_12 = soup12.find("section", class_="mf-section-2").find("table").find("tbody").find_all("tr")
+for row in cities_table_rows_12:
+    table_data = row.find_all("td")
+    #first row does not have any td elements - need to skip that one
+    #has to be a better way to check this lol
+    if not table_data:
+        print("empty")
+    else:
+        city_name = table_data[0].find("a").find("b")
+        if city_name is not None:
+            print(city_name.text)
+print("------")
+
+print("---NEW YORK---")
+r13 = requests.get("https://en.m.wikipedia.org/wiki/List_of_municipalities_in_New_York")
+soup13 = BeautifulSoup(r13.content, 'html.parser')
+cities_table_rows_13 = soup13.find("section", class_="mf-section-0").find("table").find("tbody").find_all("tr")
+for row in cities_table_rows_13:
+    table_data = row.find_all("td")
+    #another situation where i should just skip over the first row...        
+    if not table_data:
+        print("empty")
+    else:
+        city_name = table_data[0].find("a")
+        if city_name is not None:
+            print(city_name.text)
+print("------")
+
+print("---OREGON---")
+r14 = requests.get("https://en.m.wikipedia.org/wiki/List_of_cities_in_Oregon")
+soup14 = BeautifulSoup(r14.content, 'html.parser')
+cities_table_rows_14 = soup14.find("section", class_="mf-section-1").find("div").find("table").find("table").find("tbody").find_all("tr")
+for row in cities_table_rows_14:
+    table_data = row.find_all("td")
+    #another situation where i should just skip over the first row...        
+    if not table_data:
+        print("empty")
+    else:
+        city_name = table_data[1].find("a")
+        if city_name is not None:
+            print(city_name.text)
+print("------")
+
+print("---VIRGINIA---")
+r16 = requests.get("https://en.m.wikipedia.org/wiki/List_of_cities_and_counties_in_Virginia")
+soup16 = BeautifulSoup(r16.content, 'html.parser')
+cities_table_rows_16 = soup16.find("section", class_="mf-section-3").find("table").find("tbody").find_all("tr")
+for row in cities_table_rows_16:
+    city_name = row.find("th").find("a")
+    if city_name is not None:
+        print(city_name.text)
 print("------")
 
 
