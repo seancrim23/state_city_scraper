@@ -9,8 +9,8 @@ This was also a great crash course in the Beautiful Soup library which I'm defin
 
 ### To Do:
 I don't really see a pressing need at the moment to complete any of these to do's but figured I'd add them if I want to take a crack at them in the future.
-'''
+```
 - Code could possibly be cleaned up (dynamically build the Soup search based on the state instead of 15 different code blocks)
 - Filter option to only return cities / towns / municipalities
-'''
+```
 
