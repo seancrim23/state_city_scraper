@@ -1,14 +1,3 @@
-#iterate over these wiki webpages: https://en.m.wikipedia.org/wiki/List_of_municipalities_in_XYZ
-
-#section that the table exists in....
-#class: mf-section-1 collapsible-block collapsible-block-js open-block id: content-collapsible-block-0
-#wikitable sortable jquery-tablesorter (class of table when name is first column...)
-#go to tbody and iterate over rows... tr -> td -> get value of a and cut any of the cross stuff...
-
-#class: class="mf-section-1 collapsible-block collapsible-block-js open-block" id 
-#table class: class="wikitable sortable static-row-numbers jquery-tablesorter"
-#wikitable sortable static-row-numbers jquery-tablesorter (class of table when municipality is second column, first column is ID)
-#tr -> td -> a -> get value of <b>
 from bs4 import BeautifulSoup
 import json
 import requests
@@ -436,9 +425,27 @@ for state_link in state_link_arr_17:
     state_city_map[state_link[0]] = city_list
     print("------")
 
-print("---HOPEFULLY THIS LOOKS GOOD---")
-print(state_city_map)
-print("------")
+#DC
+print("DC")
+r18 = requests.get("https://en.m.wikipedia.org/wiki/Neighborhoods_in_Washington,_D.C.")
+soup18 = BeautifulSoup(r18.content, 'html.parser')
+cities_table_rows_18 = soup18.find("section", class_="mf-section-1").find_all("ul")
+city_list = []
+for row in cities_table_rows_18:
+    list_elements = row.find_all("li")
+    for list_element in list_elements:
+        nbhd_name = list_element.find("a")
+        if nbhd_name is not None:
+            city_list.append(format_city_name(nbhd_name.text))
+            #print(nbhd_name.text)
+state_city_map["DC"] = city_list
+print("--------------")
+
+
+#print("---HOPEFULLY THIS LOOKS GOOD---")
+#print(state_city_map)
+#print("------")
+print("state mapping size: ", len(state_city_map))
 
 with open('state_city_mapping.json', 'w') as fp:
     json.dump(state_city_map, fp)
