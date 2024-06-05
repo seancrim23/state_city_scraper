@@ -7,7 +7,7 @@ I don't think you'll actually have to do anything unless the script needs to be 
 
 This was also a great crash course in the Beautiful Soup library which I'm definitely going to use more in the future: [Beautiful Soup Docs](https://beautiful-soup-4.readthedocs.io/en/latest/)
 
-###To Do:
+### To Do:
 I don't really see a pressing need at the moment to complete any of these to do's but figured I'd add them if I want to take a crack at them in the future.
 '''
 - Code could possibly be cleaned up (dynamically build the Soup search based on the state instead of 15 different code blocks)
