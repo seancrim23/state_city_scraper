@@ -41,7 +41,8 @@ for state_link in state_link_arr:
     for row in cities_table_rows:
         city_name = row.find("th").find("a")
         if city_name is not None:
-            city_list.append(format_city_name(city_name.text))
+            if format_city_name(city_name.text) not in city_list:
+                city_list.append(format_city_name(city_name.text))
             #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -66,7 +67,8 @@ for state_link in state_link_arr_2:
             if table_head is not None:
                 city_name = table_head.find("a")
                 if city_name is not None:
-                    city_list.append(format_city_name(city_name.text))
+                    if format_city_name(city_name.text) not in city_list:
+                        city_list.append(format_city_name(city_name.text))
                     #print(city_name.text)
         index+=1
     state_city_map[state_link[0]] = city_list
@@ -87,13 +89,13 @@ for row in cities_table_rows_3:
     else:
         city_name = table_data[0].find("a").find("b")
         if city_name is not None:
-            city_list.append(format_city_name(city_name.text))
+            if format_city_name(city_name.text) not in city_list:
+                city_list.append(format_city_name(city_name.text))
             #print(city_name.text)
 state_city_map["ME"] = city_list
 print("------")
 
 #doing this for Nebraska bc formatted differently
-#alaska - https://en.m.wikipedia.org/wiki/List_of_cities_in_Alaska
 #hawaii - https://en.m.wikipedia.org/wiki/List_of_places_in_Hawaii
 #minnesota - https://en.m.wikipedia.org/wiki/List_of_cities_in_Minnesota
 #missouri - https://en.m.wikipedia.org/wiki/List_of_cities_in_Missouri
@@ -105,7 +107,6 @@ print("------")
 #wyoming - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Wyoming
 state_link_arr_4 = [
     ["NE", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Nebraska"],
-    ["AK", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Alaska"],
     ["HI", "https://en.m.wikipedia.org/wiki/List_of_places_in_Hawaii"],
     ["MN", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Minnesota"],
     ["MO", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Missouri"],
@@ -130,7 +131,8 @@ for state_link in state_link_arr_4:
         else:
             city_name = table_data[1].find("a")
             if city_name is not None:
-                city_list.append(format_city_name(city_name.text))
+                if format_city_name(city_name.text) not in city_list:
+                    city_list.append(format_city_name(city_name.text))
                 #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -158,7 +160,8 @@ for state_link in state_link_arr_5:
         else:
             city_name = table_data[0].find("a")
             if city_name is not None:
-                city_list.append(format_city_name(city_name.text))
+                if format_city_name(city_name.text) not in city_list:
+                    city_list.append(format_city_name(city_name.text))
                 #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -182,7 +185,8 @@ for state_link in state_link_arr_6:
         else:
             city_name = table_data[0].find("a")
             if city_name is not None:
-                city_list.append(format_city_name(city_name.text))
+                if format_city_name(city_name.text) not in city_list:
+                    city_list.append(format_city_name(city_name.text))
                 #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -203,6 +207,7 @@ for state_link in state_link_arr_6:
 #utah - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Utah
 #washington - https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Washington
 #wisconsin - https://en.m.wikipedia.org/wiki/List_of_cities_in_Wisconsin
+#alaska - https://en.m.wikipedia.org/wiki/List_of_cities_in_Alaska
 state_link_arr_7 = [
     ["CT", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Connecticut"],
     ["GA", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Georgia_(U.S._state)"],
@@ -220,6 +225,7 @@ state_link_arr_7 = [
     ["UT", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Utah"],
     ["WA", "https://en.m.wikipedia.org/wiki/List_of_municipalities_in_Washington"],
     ["WI", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Wisconsin"],
+    ["AK", "https://en.m.wikipedia.org/wiki/List_of_cities_in_Alaska"]
 ]
 for state_link in state_link_arr_7:
     print(state_link[0])
@@ -235,7 +241,8 @@ for state_link in state_link_arr_7:
         else:
             city_name = table_data[0].find("a")
             if city_name is not None:
-                city_list.append(format_city_name(city_name.text))
+                if format_city_name(city_name.text) not in city_list:
+                    city_list.append(format_city_name(city_name.text))
                 #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -262,7 +269,8 @@ for state_link in state_link_arr_8:
         else:
             city_name = table_data[0].find("a")
             if city_name is not None:
-                city_list.append(format_city_name(city_name.text))
+                if format_city_name(city_name.text) not in city_list:
+                    city_list.append(format_city_name(city_name.text))
                 #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -280,7 +288,8 @@ for row in cities_table_rows_9:
     else:
         city_name = table_data[1].find("a")
         if city_name is not None:
-            city_list.append(format_city_name(city_name.text))
+            if format_city_name(city_name.text) not in city_list:
+                city_list.append(format_city_name(city_name.text))
             #print(city_name.text)
 state_city_map["ID"] = city_list
 print("------")
@@ -304,7 +313,8 @@ for state_link in state_link_arr_10:
         else:
             city_name = table_data[1].find("a")
             if city_name is not None:
-                city_list.append(format_city_name(city_name.text))
+                if format_city_name(city_name.text) not in city_list:
+                    city_list.append(format_city_name(city_name.text))
                 #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -325,10 +335,12 @@ for row in cities_table_rows_11:
         #does it have a link inside? if no, print normal if yes, print link value
         city_link_tag = bold_tag.find("a")
         if city_link_tag is None:
-            city_list.append(format_city_name(bold_tag.text))
+            if format_city_name(bold_tag.text) not in city_list:
+                city_list.append(format_city_name(bold_tag.text))
             #print(bold_tag.text)
         else:
-            city_list.append(format_city_name(city_link_tag.text))
+            if format_city_name(city_link_tag.text) not in city_list:
+                city_list.append(format_city_name(city_link_tag.text))
             #print(city_link_tag.text)
 state_city_map["MA"] = city_list
 print("------")
@@ -353,7 +365,8 @@ for state_link in state_link_arr_12:
         else:
             city_name = table_data[0].find("a").find("b")
             if city_name is not None:
-                city_list.append(format_city_name(city_name.text))
+                if format_city_name(city_name.text) not in city_list:
+                    city_list.append(format_city_name(city_name.text))
                 #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -371,7 +384,8 @@ for row in cities_table_rows_13:
     else:
         city_name = table_data[0].find("a")
         if city_name is not None:
-            city_list.append(format_city_name(city_name.text))
+            if format_city_name(city_name.text) not in city_list:
+                city_list.append(format_city_name(city_name.text))
             #print(city_name.text)
 state_city_map["NY"] = city_list
 print("------")
@@ -389,7 +403,8 @@ for row in cities_table_rows_14:
     else:
         city_name = table_data[1].find("a")
         if city_name is not None:
-            city_list.append(format_city_name(city_name.text))
+            if format_city_name(city_name.text) not in city_list:
+                city_list.append(format_city_name(city_name.text))
             #print(city_name.text)
 state_city_map["OR"] = city_list
 print("------")
@@ -402,7 +417,8 @@ city_list = []
 for row in cities_table_rows_16:
     city_name = row.find("th").find("a")
     if city_name is not None:
-        city_list.append(format_city_name(city_name.text))
+        if format_city_name(city_name.text) not in city_list:
+            city_list.append(format_city_name(city_name.text))
         #print(city_name.text)
 state_city_map["VA"] = city_list
 print("------")
@@ -420,7 +436,8 @@ for state_link in state_link_arr_17:
     for row in cities_table_rows_17:
         city_name = row.find("th").find("a")
         if city_name is not None:
-            city_list.append(format_city_name(city_name.text))
+            if format_city_name(city_name.text) not in city_list:
+                city_list.append(format_city_name(city_name.text))
             #print(city_name.text)
     state_city_map[state_link[0]] = city_list
     print("------")
@@ -436,7 +453,8 @@ for row in cities_table_rows_18:
     for list_element in list_elements:
         nbhd_name = list_element.find("a")
         if nbhd_name is not None:
-            city_list.append(format_city_name(nbhd_name.text))
+            if format_city_name(nbhd_name.text) not in city_list:
+                city_list.append(format_city_name(nbhd_name.text))
             #print(nbhd_name.text)
 state_city_map["DC"] = city_list
 print("--------------")
